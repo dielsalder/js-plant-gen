@@ -32,6 +32,7 @@ function flowerMesh(flowerData){
     let flowerGeometry = makeFlowerGeometry(flowerData); 
     let flowerMesh = new THREE.Mesh(flowerGeometry, 
         new THREE.MeshLambertMaterial({ color:flowerData.flowerColor }));
+    flowerMesh.name="flowerMesh";
     return flowerMesh;
 }
 function stemMesh(flowerData){
@@ -46,6 +47,7 @@ function stemMesh(flowerData){
       color:stemColor,
     }));
   // move to align top of stem with origin
+  stemMesh.name="stemMesh";
   stemMesh.translateOnAxis(new THREE.Vector3(0,0,-1),  0.5* stemHeight);
 return stemMesh;
 }
@@ -96,6 +98,22 @@ function leafMesh(flowerData){
     let leafMesh = new THREE.Mesh(leafGeometry, new THREE.MeshLambertMaterial({
       color:flowerData.leafStemColor, flatshading:true
     }));
+    leafMesh.name = "leafMesh";
     return leafMesh
 }
-export {flowerMesh, stemMesh, leafMesh};
+function plantModel(flowerData){
+  let flower= flowerMesh(flowerData);
+  let stem= stemMesh(flowerData);
+  let leaf= leafMesh(flowerData);
+  let plantGroup = mergePlantComponents(flower,stem,leaf);
+  return plantGroup;
+}
+
+function mergePlantComponents(flowerMesh, stemMesh, leafMesh){
+  let plantGroup = new THREE.Group();
+  plantGroup.add(flowerMesh);
+  plantGroup.add(stemMesh);
+  plantGroup.add(leafMesh);
+  return plantGroup;
+}
+export {flowerMesh, stemMesh, leafMesh, mergePlantComponents, plantModel};
