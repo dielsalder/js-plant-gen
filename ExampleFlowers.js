@@ -1,5 +1,5 @@
 // json data for a bunch of example flowers
-blueSixPetals = {
+const blueSixPetals = {
     numPetals:6,
     petalLength:5,
     petalPitch : 30*Math.PI/180,
@@ -19,7 +19,7 @@ blueSixPetals = {
     leavesTopBound:0.5,
 };
 
-yellowStar = {
+const yellowStar = {
   numPetals: 5,
   petalLength: 4.5,
   petalPitch: 0.329203673205103,
@@ -38,7 +38,7 @@ yellowStar = {
   leafPitch: 1.1292036732051,
   leavesTopBound: 0.29,
 };
-poppy = {
+const poppy = {
   numPetals: 21,
   petalLength: 3.7,
   petalPitch: 0.409203673205103,
@@ -60,4 +60,4 @@ poppy = {
   leafUpdated: false
 };
 
-export {blueSixPetals, yellowStar, poppy}
+export {blueSixPetals, yellowStar, poppy};
